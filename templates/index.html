@@ -1,0 +1,19 @@
+<html>
+
+<a href="/test">Test</a>
+<h1>Hits</h1>
+<p>redisid - when - useragent - address - referrer</p>
+{% for d in data %}
+
+<p>
+    {% for each in d %}
+        {{ each }} -
+    {% endfor %}
+</p>
+
+
+{% endfor %}
+
+
+
+</html>

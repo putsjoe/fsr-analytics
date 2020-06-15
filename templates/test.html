@@ -1,0 +1,13 @@
+<html>
+    <noscript>
+        <img src="http://localhost:5000/noscript.gif" alt="tracker image"/>
+    </noscript>
+
+    <input type="button" id="btn" value="GO" />
+    <script src="/analytics.js"></script>
+    <script type="text/javascript">
+        document.getElementById('btn').onclick = function() {
+            tracker('click')
+        }
+    </script>
+</html>
