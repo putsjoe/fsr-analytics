@@ -8,8 +8,6 @@ from flask_basicauth import BasicAuth
 from user_agents import parse as parse_agent
 
 
-# NEXT: Set this up on bethink behind a subdomain, see if you can get the ip address of accesser. Also test on mobile.
-
 app = Flask(
     __name__, static_url_path='', static_folder='static',
     template_folder='templates')
@@ -27,13 +25,17 @@ r = redis.Redis(decode_responses=True)
 print(f'Using redis stream name {REDIS_STREAM_NAME}')
 
 
+def get_remote():
+    if request.headers.getlist("X-Forwarded-For"):
+        return ','.join(request.access_route) 
+    else:
+        return str(request.remote_addr)
+
 @app.route('/noscript.gif')
 def serve():
-    if not request.referrer:
-        return abort(404)
     r.xadd(REDIS_STREAM_NAME, {
         'args': json.dumps(request.args),
-        'remote_addr': str(request.environ.get('HTTP_X_REAL_IP', request.remote_addr)),
+        'remote_addr': get_remote(),
         'user_agent': str(parse_agent(request.user_agent.string)),
         'referrer': str(request.referrer),
     })

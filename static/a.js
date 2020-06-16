@@ -1,7 +1,7 @@
 var tracker_url = 'http://localhost:5000/noscript.gif'
 function tracker(event) {
     var t = 'tracker'
-    var extra = '?referrer=' + window.document.referrer
+    var extra = '?referrer=' + document.referrer
     if (event) {
         extra += '&event=' + event 
     }
