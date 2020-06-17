@@ -2,7 +2,7 @@
 
 <a href="/test">Test</a>
 <h1>Hits</h1>
-<p>redisid - when - useragent - address - referrer</p>
+<p>redisid - when - remote_addr - user_agent - address - referrer</p>
 {% for d in data %}
 
 <p>
@@ -14,6 +14,11 @@
 
 {% endfor %}
 
+<hr>
+
+{% for each in sqldata %}
+    <p>{{ each.__dict__ }}</p>
+{% endfor %}
 
 
 </html>
