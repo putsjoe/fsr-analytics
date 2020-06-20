@@ -1,7 +1,6 @@
 
-from datetime import datetime
-
 from app import db
+
 
 class Hit(db.Model):
     id = db.Column(db.Integer, primary_key=True)

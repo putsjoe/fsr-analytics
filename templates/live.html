@@ -1,7 +1,6 @@
 <html>
 
-<a href="/test">Test</a>
-<h1>Hits</h1>
+<h1>Data still in redis, not yet commited to the database</h1>
 <p>redisid - when - remote_addr - user_agent - address - referrer</p>
 {% for d in data %}
 
@@ -13,12 +12,5 @@
 
 
 {% endfor %}
-
-<hr>
-
-{% for each in sqldata %}
-    <p>{{ each.__dict__ }}</p>
-{% endfor %}
-
 
 </html>

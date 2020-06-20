@@ -1,0 +1,68 @@
+<html>
+
+<a href="{{ url_for('imp') }}">Import latest data</a> | <a href="{{ url_for('live') }}">Live data</a>
+<h1>Hits</h1>
+
+<p>First hit={{ first_date }} | Latest hit={{ latest_date }}</p>
+<hr>
+<div class="push">
+    <p>All Hits including events</p>
+    <p>Unique hits={{ unique }} | non-unique={{ nonunique }}  | Total hits={{ allvisits }}</p>
+</div>
+
+<hr>
+
+<p>Device info</p>
+<div class="wrapper">
+    {% for t,d in agentdata.items() %}
+        <div class="box">
+            <p style="text-decoration:underline">{{ t }}</p>
+            {% for k,v in d.items() %}
+                <p>{{ k }}={{ v }}</p>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>
+<hr>
+
+<p>Hits by page</p>
+<div class="push">
+    {% for k,v in pagedata.items() %}
+    <p>{{ k }}={{ v }}</p>
+    {% endfor %}
+</div>
+
+<p>Referrals</p>
+<div class="push">
+    {% for e in referdata %}
+        <p>{{ e[0] }} > {{ e[1] }}={{ e[2] }}</p>
+    {% endfor %}
+</div>
+
+<hr>
+
+<p>Event count</p>
+<div class="push">
+    {% for k,v in eventdata.items() %}
+        <p>{{ k }}={{ v }}</p>
+    {% endfor %}
+</div>
+<hr>
+
+<p>IP data</p>
+<div class="push">
+    {% for k,v in ipdata.items() %}
+        <p>{{ k }}={{ v }}</p>
+    {% endfor %}
+</div>
+
+
+<style>
+    body { text-align: center; }
+    .wrapper { display: grid; grid-template-columns: 10vw 10vw 10vw;
+        justify-content: center;}
+    .box { border-radius: 5px; padding: 5px; }
+    .push { margin-left: 20px; }
+</style>
+
+</html>
